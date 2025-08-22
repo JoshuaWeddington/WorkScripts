@@ -11,7 +11,7 @@ import os
 import glob
 import shutil
 
-folderPath = r'\\st-claire.org\users\storage\Information Services\Informatics\Share\Analytics\PainTrack Drop Folder'
+folderPath = r''
 
 excelFile = glob.glob(os.path.join(folderPath, '*.xls'))
 if len(excelFile) != 1:
@@ -24,5 +24,6 @@ dataFrame = pd.read_excel(excelFile)
 dataFrame['Goals'] = dataFrame['Goals'].apply(lambda x: x[:255] if isinstance(x, str) else x)
 
 dataFrame.to_csv(csvFile, index = False)
+
 
 shutil.move(excelFile, os.path.join(folderPath + r'\Past Data Loads', os.path.basename(excelFile)))
